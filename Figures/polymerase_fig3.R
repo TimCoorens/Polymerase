@@ -31,6 +31,8 @@ POLE_botseq_fit=fit_signatures(counts=counts_adjusted[c(1,3),],
 POLE_botseq_exposures <- retrieve_pars(POLE_botseq_fit, 
                                        par = "exposures", 
                                        hpd_prob = 0.95)
+write.table(POLE_botseq_exposures$mean,"~/Desktop/Phil_POL/POLE_botseq_exposures_mean.txt",sep="\t",quote=F)
+
 POLD_botseq_fit=fit_signatures(counts=counts[c(2,4),], 
                                signatures = final_sigs[c("SBS1","SBS5","SBS10C","SBS28"),],
                                iter = 20000, 
@@ -40,6 +42,8 @@ POLD_botseq_fit=fit_signatures(counts=counts[c(2,4),],
 POLD_botseq_exposures <- retrieve_pars(POLD_botseq_fit, 
                                        par = "exposures", 
                                        hpd_prob = 0.95)
+write.table(POLD_botseq_exposures$mean,"~/Desktop/Phil_POL/POLE_botseq_exposures_mean.txt",sep="\t",quote=F)
+
 
 
 #Endometrium
