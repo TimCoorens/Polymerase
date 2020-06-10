@@ -1,6 +1,6 @@
 # Workflow
 
-For this paper, the signature extraction and assignment consisted roughly of three steps: extracting mutational signatures using the hdp packages, deconvoluting the obtained signatures into reference PCAWG signatures (where appropriate) and fitting the resulting final set of signatures to the observed counts of SNVs per branch or per bulk sample. 
+For this paper, the signature extraction and assignment consisted roughly of three steps: extracting mutational signatures using the hdp package (https://github.com/nicolaroberts/hdp), deconvoluting the obtained signatures into reference PCAWG signatures (where appropriate) and fitting the resulting final set of signatures to the observed counts of SNVs per branch or per bulk sample. 
 
 ### 1. Running HDP
 
@@ -12,7 +12,13 @@ The last part of running HDP is combining the results of the 20 independent chai
 
 ### 2. Deconvoluting HDP signatures into reference signatures
 
+The next step is to compare the obtained hdp signatures to a set of reference signatures. Here, we used the mutational signatures from PCAWG (Alexandrov et al, 2020) and a set of novel signatures found in normal colon (Lee-Six et al, 2019). Both sets of references are uploaded here (PCAWG_sigProfiler_SBS_signatures.csv and Signatures_trinucleotide_composition_SBS_ABCD.txt)
+
+For our hdp signatures that are combinations of known signatures, we deconvolve using an EM-algorithm, largely based on the approach previously described in Lee-Six et al, 2019. The code for this step can be found in deconvolute_hdp_sigs.R. Of course, the deconvolution step will work for any set of mutational signatures obtained after an extraction, not just via hdp. 
+
 ### 3. Re-fitting signatures to counts.
+
+Lastly, to more accurately assess the exposures of each mutational signature in the final set, we used the R package sigfit (https://github.com/kgori/sigfit). This step is carried out as part of the figure generation and its precise application can be found in the appropriate R scripts. 
 
 
 
