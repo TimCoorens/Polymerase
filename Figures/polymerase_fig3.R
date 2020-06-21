@@ -252,6 +252,5 @@ dev.off()
 counts=read.table("POLD_insertion_T_homopolymer_counts.txt")
 
 pdf("embryonic_POLD_ins_final.pdf",useDingbats = F,width=8,height=5)
-barplot(t(as.matrix(counts)),las=2,col="grey50",ylim=c(0,10))
+barplot(counts$V2,las=2,col="grey50",ylim=c(0,10),names.arg = counts$V1)
 dev.off()
-
