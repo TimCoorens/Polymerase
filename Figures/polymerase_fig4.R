@@ -155,16 +155,16 @@ ratios_colon_geno["POLD1_D316N","genes_mean"]=rowSums(colon_exposure$mean[1,ref_
 ratios_colon_geno["POLD1_D316N","genes_lower95"]=rowSums(colon_exposure$lower_95[1,ref_sigs_present%in%c(normal,pol)])/rowSums(colon_exposure$lower_95[1,normal])
 ratios_colon_geno["POLD1_D316N","genes_upper95"]=rowSums(colon_exposure$upper_95[1,ref_sigs_present%in%c(normal,pol)])/rowSums(colon_exposure$upper_95[1,normal])
 
-POLE_nanoseq_exposures_mean=read.table("POLE_nanoseq_exposures_mean.txt",sep="\t")
-POLD_nanoseq_exposures_mean=read.table("POLD_nanoseq_exposures_mean.txt",sep="\t")
+POLE_dupseq_exposures_mean=read.table("POLE_dupseq_exposures_mean.txt",sep="\t")
+POLD_dupseq_exposures_mean=read.table("POLD_dupseq_exposures_mean.txt",sep="\t")
 
 wg_means=c(ratios_colon_geno["POLE","all_mean"], 
            1/rowSums(endo_exposures$mean[1,c("SBS1","SBS5")]),
-           1/rowSums(POLE_nanoseq_exposures_mean$mean[2:1,c("SBS1","SBS5")]),
+           1/rowSums(POLE_dupseq_exposures_mean$mean[2:1,c("SBS1","SBS5")]),
            1/rowSums(skin_exposures$mean[1,c("SBS1","SBS5","SBS7a","SBS7b")]),
-           1/rowSums(POLD_nanoseq_exposures_mean[2,c("SBS1","SBS5")]),
+           1/rowSums(POLD_dupseq_exposures_mean[2,c("SBS1","SBS5")]),
            ratios_colon_geno["POLD1_S478N","all_mean"],
-           1/rowSums(POLD_nanoseq_exposures_mean[1,c("SBS1","SBS5")]),
+           1/rowSums(POLD_dupseq_exposures_mean[1,c("SBS1","SBS5")]),
            ratios_colon_geno[c("POLD1_L474P","POLD1_D316N"),"all_mean"])
 
 #Fig4A
