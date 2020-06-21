@@ -1,15 +1,16 @@
 #Figure 1
 
 options(stringsAsFactors = F)
-data=read.table("POL_final_updated_20200422.txt",header=T,sep="\t")
-data=data[!data$patient%in%c("PD40097","PD44594"),]
+library(openxlsx)
+data=read.xlsx("Extended_Data_Table2.xlsx",header=T,sep="\t")
+data=data[!data$patient%in%c("PD44594"),]
 data$sensitivity=NA
 for(k in 1:nrow(data)) data$sensitivity[k]=pbinom(q=3,size=data$MEDIAN_COVERAGE[k],p=data$median_vaf[k],lower.tail=F)
 data$sbs_burden_corrected=data$sbstotal/data$sensitivity
 data$indel_burden_corrected=data$indeltotal/data$sensitivity
 
-data$full_descr=paste0(data$patient," (",data$age," years)")
-select=data$type=="normal"
+data$full_descr=paste0(data$individual," (",data$age," years)")
+select=data$sample_type=="intestinal crypt"
 data_select=data[select,]
 data_select$germline_mutation=factor(data_select$germline_mutation,levels=unique(data$germline_mutation),ordered=T)
 data_select$full_descr=factor(data_select$full_descr,levels=unique(data_select$full_descr[order(data_select$germline_mutation,data_select$age)]),ordered=T)
@@ -107,8 +108,7 @@ points(x=43.6,y=4.4,cex=1.4,lwd=2,pch=4)
 dev.off()
 
 
-select2=grepl("_lo0",data$sample)&data$patient!="PD44594"&!grepl("normal",data$tissue)&
-  !data$hist.comment%in%c("lymphocytes","connective tissue")
+select2=data$sample_type%in%c("polyp crypt","tumour sample")
 library(scales)
 
 #Fig1F
