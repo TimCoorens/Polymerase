@@ -1,5 +1,5 @@
 # Polymerase
-Code accompanying Robinson, Coorens, Palles et al
+Code accompanying Robinson, Coorens, Palles et al (2020).
 
 # Mutational signature analysis
 
